@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ue",
+  "name": "Useful Emeralds",
+  "description": "UsefulEmeralds - a mod to make emeralds... more useful.",
+  "version": "1",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["MatthyPlayz"],
+  "credits": "Every single tutorial that helped me :D",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
