@@ -6,7 +6,6 @@ import com.matthyfamily.blocks.BlockBasic;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -21,18 +20,26 @@ public class ModBlocks {
 	static Block tutorialBlock;
 	
 	public static void init() {
-		tutorialBlock = new BlockBasic("tutorialBlock", Material.ROCK).setHardness(1.5f).setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setLightLevel(1.0f);
+		tutorialBlock = new BlockBasic("tutorialBlock", Material.ROCK);
 		tutorialBlock.setHarvestLevel("pickaxe", 2);
 	}
 	
 	@SubscribeEvent
-	public static void registerBlocks(RegistryEvent.Register<Block> event) {
+	public void registerBlocks(RegistryEvent.Register<Block> event) {
 		event.getRegistry().registerAll(tutorialBlock);
 	}
 	
 	@SubscribeEvent
+	public static void onItemRegister(RegistryEvent.Register<Item> event) {
+		for (Block block : ForgeRegistries.BLOCKS.getValues()) {
+	    	if (block.getRegistryName().getResourceDomain().equals(Reference.MODID)) {
+	      		event.getRegistry().register(new ItemBlock(block).setRegistryName(tutorialBlock.getRegistryName());
+	    }
+	}﻿
+	
+	@SubscribeEvent
 	public static void registerItemBlocks(RegistryEvent.Register<Item> event) {
-		event.getRegistry().registerAll(new ItemBlock(tutorialBlock).setRegistryName(tutorialBlock.getRegistryName()));
+		event.getRegistry().register(new ItemBlock(tutorialBlock).setRegistryName(tutorialBlock.getRegistryName()));
 	}
 	
 	@SubscribeEvent
